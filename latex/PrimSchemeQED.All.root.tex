@@ -1,0 +1,70 @@
+\documentclass[a4paper]{article}
+\usepackage{parskip}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\DisableLigatures[-]{encoding = T1, family = tt* }
+\usepackage{hyperref}
+
+\usepackage[conor]{agda}
+\input{agda-custom}
+\renewcommand{\AgdaCodeStyle}{\small}
+\AgdaSpaceAroundCode{}
+
+\newif\iflatex\latextrue
+\newif\ifmarkdown
+
+% In literate Agda files, enclose text with LaTeX markup in 
+% \iflatex
+% ...
+% \fi
+% and enclose text with Markdown markup in
+% \ifmarkdown
+% ...
+% \fi
+% Note: Inline use of \if...\fi is not yet supported by `make md`.
+
+\title{PrimSchemeQED Agda Formalization}
+\renewcommand{\today}{DRAFT}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+  This is a complete listing of an Agda formalization of the denotational semantics
+  in the paper \emph{Compositional Semantics for eval in Scheme} by Peter D. Mosses,
+  submitted to OLIVIERFEST 2025.
+
+  The Agda code and its listing are unpolished initial versions,
+  and will be replaced by improved versions before submission as supplementary material.
+
+  The Agda code type-checks with Agda version 2.7.0.1 and the standard Agda library.
+  The PDF of this listing was produced by running the following command in the project root:
+
+  \begin{verbatim}
+    make DIR=. ROOT=PrimSchemeQED/All.lagda pdf
+  \end{verbatim}
+\end{abstract}
+
+\input{PrimSchemeQED/All}
+\clearpage
+
+\section{Domain Notation}
+\input{PrimSchemeQED/Domain-Notation}
+\clearpage
+
+\section{Abstract Syntax}
+\input{PrimSchemeQED/Abstract-Syntax}
+\clearpage
+
+\section{Domain Equations}
+\input{PrimSchemeQED/Domain-Equations}
+\clearpage
+
+\section{Auxiliary Functions}
+\input{PrimSchemeQED/Auxiliary-Functions}
+\clearpage
+
+\section{Semantic Functions}
+\input{PrimSchemeQED/Semantic-Functions}
+
+\end{document}
