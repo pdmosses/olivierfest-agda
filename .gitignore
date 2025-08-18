@@ -1,3 +1,8 @@
 *.agdai
 MAlonzo/**
 .DS_Store
+*.aux
+*.log
+*.out
+*.ptb
+*.toc
