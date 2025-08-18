@@ -76,4 +76,4 @@ latex: mv ScmQE.pdf ..
 ```
 
 [DOI]: https://doi.org/10.1145/3759427.3760369 "DOI"
-[SemQ.pdf]: SemQ.pdf "PDF"
+[SemQ.pdf]: https://github.com/pdmosses/olivierfest-agda/blob/main/ScmQE.pdf "PDF"
