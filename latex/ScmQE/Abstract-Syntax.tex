@@ -1,0 +1,533 @@
+\begin{code}%
+\>[0]\AgdaKeyword{module}\AgdaSpace{}%
+\AgdaModule{ScmQE.Abstract-Syntax}\AgdaSpace{}%
+\AgdaKeyword{where}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaKeyword{open}\AgdaSpace{}%
+\AgdaKeyword{import}\AgdaSpace{}%
+\AgdaModule{Data.Integer.Base}%
+\>[31]\AgdaKeyword{renaming}\AgdaSpace{}%
+\AgdaSymbol{(}\AgdaDatatype{ℤ}\AgdaSpace{}%
+\AgdaSymbol{to}\AgdaSpace{}%
+\AgdaDatatype{Int}\AgdaSymbol{)}\AgdaSpace{}%
+\AgdaKeyword{public}\<%
+\\
+\>[0]\AgdaKeyword{open}\AgdaSpace{}%
+\AgdaKeyword{import}\AgdaSpace{}%
+\AgdaModule{Data.String.Base}%
+\>[31]\AgdaKeyword{using}\AgdaSpace{}%
+\AgdaSymbol{(}\AgdaPostulate{String}\AgdaSymbol{)}\AgdaSpace{}%
+\AgdaKeyword{public}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaKeyword{data}%
+\>[11]\AgdaDatatype{Con}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaPrimitive{Set}%
+\>[28]\AgdaComment{--\ constants,\ *excluding*\ quotations}\<%
+\\
+\>[0]\AgdaKeyword{variable}%
+\>[11]\AgdaGeneralizable{K}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Con}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaKeyword{data}%
+\>[11]\AgdaDatatype{Key}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaPrimitive{Set}%
+\>[28]\AgdaComment{--\ keywords}\<%
+\\
+\>[0]\AgdaKeyword{variable}%
+\>[11]\AgdaGeneralizable{X}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Key}\<%
+\\
+\>[0]\AgdaKeyword{data}%
+\>[11]\AgdaDatatype{Dat}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaPrimitive{Set}%
+\>[28]\AgdaComment{--\ datum}\<%
+\\
+\>[0]\AgdaKeyword{variable}%
+\>[11]\AgdaGeneralizable{Δ}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Dat}\<%
+\\
+\>[0]\AgdaKeyword{data}%
+\>[11]\AgdaDatatype{Dat⋆}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaPrimitive{Set}%
+\>[28]\AgdaComment{--\ datum\ sequences}\<%
+\\
+\>[0]\AgdaKeyword{variable}%
+\>[11]\AgdaGeneralizable{Δ⋆}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Dat⋆}\<%
+\\
+\>[0]\AgdaKeyword{data}%
+\>[11]\AgdaDatatype{Dat⁺}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaPrimitive{Set}%
+\>[28]\AgdaComment{--\ non-empty\ datum\ sequences}\<%
+\\
+\>[0]\AgdaKeyword{variable}%
+\>[11]\AgdaGeneralizable{Δ⁺}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Dat⁺}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaFunction{Ide}%
+\>[18]\AgdaSymbol{=}\AgdaSpace{}%
+\AgdaPostulate{String}%
+\>[28]\AgdaComment{--\ identifiers\ (variables)}\<%
+\\
+\>[0]\AgdaKeyword{variable}%
+\>[11]\AgdaGeneralizable{I}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaFunction{Ide}\<%
+\\
+\>[0]\AgdaKeyword{data}%
+\>[11]\AgdaDatatype{Exp}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaPrimitive{Set}%
+\>[28]\AgdaComment{--\ expressions}\<%
+\\
+\>[0]\AgdaKeyword{variable}%
+\>[11]\AgdaGeneralizable{E}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Exp}\<%
+\\
+\>[0]\AgdaKeyword{data}%
+\>[11]\AgdaDatatype{Exp⋆}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaPrimitive{Set}%
+\>[28]\AgdaComment{--\ expression\ sequences}\<%
+\\
+\>[0]\AgdaKeyword{variable}%
+\>[11]\AgdaGeneralizable{E⋆}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Exp⋆}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaKeyword{data}%
+\>[11]\AgdaDatatype{Body}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaPrimitive{Set}%
+\>[28]\AgdaComment{--\ body\ expression\ or\ definition}\<%
+\\
+\>[0]\AgdaKeyword{variable}%
+\>[11]\AgdaGeneralizable{B}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Body}\<%
+\\
+\>[0]\AgdaKeyword{data}%
+\>[11]\AgdaDatatype{Body⁺}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaPrimitive{Set}%
+\>[28]\AgdaComment{--\ body\ sequences}\<%
+\\
+\>[0]\AgdaKeyword{variable}%
+\>[11]\AgdaGeneralizable{B⁺}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Body⁺}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaKeyword{data}%
+\>[11]\AgdaDatatype{Prog}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaPrimitive{Set}%
+\>[28]\AgdaComment{--\ programs}\<%
+\\
+\>[0]\AgdaKeyword{variable}%
+\>[11]\AgdaGeneralizable{Π}%
+\>[18]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Prog}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaComment{------------------------------------------------------------------------}\<%
+\\
+\>[0]\AgdaComment{--\ Literal\ constants}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaKeyword{data}\AgdaSpace{}%
+\AgdaDatatype{Con}\AgdaSpace{}%
+\AgdaKeyword{where}%
+\>[30]\AgdaComment{--\ basic\ constants}\<%
+\\
+\>[0][@{}l@{\AgdaIndent{0}}]%
+\>[2]\AgdaInductiveConstructor{int}%
+\>[7]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Int}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Con}%
+\>[30]\AgdaComment{--\ integer\ numerals}\<%
+\\
+%
+\>[2]\AgdaInductiveConstructor{\#t}%
+\>[7]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Con}%
+\>[30]\AgdaComment{--\ true}\<%
+\\
+%
+\>[2]\AgdaInductiveConstructor{\#f}%
+\>[7]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Con}%
+\>[30]\AgdaComment{--\ false}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaComment{------------------------------------------------------------------------}\<%
+\\
+\>[0]\AgdaComment{--\ Quotations}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaKeyword{data}\AgdaSpace{}%
+\AgdaDatatype{Key}\AgdaSpace{}%
+\AgdaKeyword{where}%
+\>[30]\AgdaComment{--\ keyword\ symbols}\<%
+\\
+\>[0][@{}l@{\AgdaIndent{0}}]%
+\>[2]\AgdaInductiveConstructor{begin}\AgdaSpace{}%
+\AgdaInductiveConstructor{define}\AgdaSpace{}%
+\AgdaInductiveConstructor{eval}\AgdaSpace{}%
+\AgdaInductiveConstructor{if}\AgdaSpace{}%
+\AgdaInductiveConstructor{lambda}\AgdaSpace{}%
+\AgdaInductiveConstructor{quote′}\AgdaSpace{}%
+\AgdaInductiveConstructor{set!}\AgdaSpace{}%
+\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Key}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaKeyword{data}\AgdaSpace{}%
+\AgdaDatatype{Dat}\AgdaSpace{}%
+\AgdaKeyword{where}%
+\>[30]\AgdaComment{--\ datum\ syntax}\<%
+\\
+\>[0][@{}l@{\AgdaIndent{0}}]%
+\>[2]\AgdaInductiveConstructor{con}%
+\>[9]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Con}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Dat}%
+\>[30]\AgdaComment{--\ constants}\<%
+\\
+%
+\>[2]\AgdaInductiveConstructor{ide}%
+\>[9]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaFunction{Ide}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Dat}%
+\>[30]\AgdaComment{--\ symbols}\<%
+\\
+%
+\>[2]\AgdaInductiveConstructor{key}%
+\>[9]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Key}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Dat}%
+\>[30]\AgdaComment{--\ keywords}\<%
+\\
+%
+\>[2]\AgdaInductiveConstructor{′}%
+\>[9]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Dat}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Dat}%
+\>[30]\AgdaComment{--\ quotation\ 'Δ}\<%
+\\
+%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{⦅\AgdaUnderscore{}⦆}}%
+\>[9]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Dat⋆}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Dat}%
+\>[30]\AgdaComment{--\ datum\ lists\ (Δ⋆)}\<%
+\\
+%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{⦅\AgdaUnderscore{}·\AgdaUnderscore{}⦆}}%
+\>[9]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Dat⁺}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Dat}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Dat}%
+\>[30]\AgdaComment{--\ datum\ pairs\ (Δ⁺.Δ)}\<%
+\\
+%
+\>[2]\AgdaInductiveConstructor{\#proc}%
+\>[9]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Dat}%
+\>[30]\AgdaComment{--\ procedures}\<%
+\end{code}
+\clearpage
+\begin{code}%
+\>[0]\AgdaKeyword{data}\AgdaSpace{}%
+\AgdaDatatype{Dat⋆}\AgdaSpace{}%
+\AgdaKeyword{where}%
+\>[30]\AgdaComment{--\ datum\ sequences}\<%
+\\
+\>[0][@{}l@{\AgdaIndent{0}}]%
+\>[2]\AgdaInductiveConstructor{␣␣␣}%
+\>[9]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Dat⋆}%
+\>[30]\AgdaComment{--\ empty\ sequence}\<%
+\\
+%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{\AgdaUnderscore{}␣␣\AgdaUnderscore{}}}%
+\>[9]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Dat}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Dat⋆}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Dat⋆}%
+\>[30]\AgdaComment{--\ prefix\ sequence\ Δ\ Δ⋆}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaKeyword{data}\AgdaSpace{}%
+\AgdaDatatype{Dat⁺}\AgdaSpace{}%
+\AgdaKeyword{where}%
+\>[30]\AgdaComment{--\ non-empty\ datum\ sequences}\<%
+\\
+\>[0][@{}l@{\AgdaIndent{0}}]%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{␣␣\AgdaUnderscore{}}}%
+\>[9]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Dat}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Dat⁺}%
+\>[30]\AgdaComment{--\ single\ datum\ sequence\ Δ}\<%
+\\
+%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{\AgdaUnderscore{}␣␣\AgdaUnderscore{}}}%
+\>[9]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Dat⁺}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Dat}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Dat⁺}%
+\>[30]\AgdaComment{--\ suffix\ sequence\ Δ⁺\ Δ}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaComment{------------------------------------------------------------------------}\<%
+\\
+\>[0]\AgdaComment{--\ Expressions}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaKeyword{data}\AgdaSpace{}%
+\AgdaDatatype{Exp}\AgdaSpace{}%
+\AgdaKeyword{where}%
+\>[40]\AgdaComment{--\ expressions}\<%
+\\
+\>[0][@{}l@{\AgdaIndent{0}}]%
+\>[2]\AgdaInductiveConstructor{con}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Con}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Exp}%
+\>[40]\AgdaComment{--\ K}\<%
+\\
+%
+\>[2]\AgdaInductiveConstructor{ide}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaFunction{Ide}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Exp}%
+\>[40]\AgdaComment{--\ I}\<%
+\\
+%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{⦅\AgdaUnderscore{}␣\AgdaUnderscore{}⦆}}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Exp}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Exp⋆}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Exp}%
+\>[40]\AgdaComment{--\ (E\ E⋆)}\<%
+\\
+%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{⦅lambda\AgdaUnderscore{}␣\AgdaUnderscore{}⦆}}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaFunction{Ide}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Exp}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Exp}%
+\>[40]\AgdaComment{--\ (lambda\ I\ E)}\<%
+\\
+%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{⦅if\AgdaUnderscore{}␣\AgdaUnderscore{}␣\AgdaUnderscore{}⦆}}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Exp}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Exp}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Exp}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Exp}%
+\>[40]\AgdaComment{--\ (if\ E\ E₁\ E₂)}\<%
+\\
+%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{⦅set!\AgdaUnderscore{}␣\AgdaUnderscore{}⦆}}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaFunction{Ide}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Exp}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Exp}%
+\>[40]\AgdaComment{--\ (set!\ I\ E)}\<%
+\\
+%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{⦅quote\AgdaUnderscore{}⦆}}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Dat}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Exp}%
+\>[40]\AgdaComment{--\ (quote\ Δ)}\<%
+\\
+%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{⦅eval\AgdaUnderscore{}⦆}}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Exp}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Exp}%
+\>[40]\AgdaComment{--\ (eval\ E)}\<%
+\\
+%
+\>[2]\AgdaInductiveConstructor{⦅␣⦆}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Exp}%
+\>[40]\AgdaComment{--\ illegal}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaKeyword{data}\AgdaSpace{}%
+\AgdaDatatype{Exp⋆}\AgdaSpace{}%
+\AgdaKeyword{where}%
+\>[40]\AgdaComment{--\ expression\ sequences}\<%
+\\
+\>[0][@{}l@{\AgdaIndent{0}}]%
+\>[2]\AgdaInductiveConstructor{␣␣␣}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Exp⋆}%
+\>[40]\AgdaComment{--\ empty\ sequence}\<%
+\\
+%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{\AgdaUnderscore{}␣␣\AgdaUnderscore{}}}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Exp}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Exp⋆}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Exp⋆}%
+\>[40]\AgdaComment{--\ prefix\ sequence\ E\ E⋆}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaComment{------------------------------------------------------------------------}\<%
+\\
+\>[0]\AgdaComment{--\ Definitions\ and\ Programs}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaKeyword{data}\AgdaSpace{}%
+\AgdaDatatype{Body}\AgdaSpace{}%
+\AgdaKeyword{where}\<%
+\\
+\>[0][@{}l@{\AgdaIndent{0}}]%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{␣␣\AgdaUnderscore{}}}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Exp}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Body}%
+\>[40]\AgdaComment{--\ side-effect\ expression\ E}\<%
+\\
+%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{⦅define\AgdaUnderscore{}␣\AgdaUnderscore{}⦆}}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaFunction{Ide}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Exp}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Body}%
+\>[40]\AgdaComment{--\ definition\ (define\ I\ E)}\<%
+\\
+%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{⦅begin\AgdaUnderscore{}⦆}}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Body⁺}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Body}%
+\>[40]\AgdaComment{--\ block\ (begin\ B⁺)}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaKeyword{data}\AgdaSpace{}%
+\AgdaDatatype{Body⁺}\AgdaSpace{}%
+\AgdaKeyword{where}%
+\>[40]\AgdaComment{--\ body\ sequence}\<%
+\\
+\>[0][@{}l@{\AgdaIndent{0}}]%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{␣␣\AgdaUnderscore{}}}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Body}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Body⁺}%
+\>[40]\AgdaComment{--\ single\ body\ sequence\ B}\<%
+\\
+%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{\AgdaUnderscore{}␣␣\AgdaUnderscore{}}}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Body}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Body⁺}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Body⁺}%
+\>[40]\AgdaComment{--\ prefix\ body\ sequence\ B\ B⁺}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaKeyword{data}\AgdaSpace{}%
+\AgdaDatatype{Prog}\AgdaSpace{}%
+\AgdaKeyword{where}%
+\>[40]\AgdaComment{--\ programs}\<%
+\\
+\>[0][@{}l@{\AgdaIndent{0}}]%
+\>[2]\AgdaInductiveConstructor{␣␣␣}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Prog}%
+\>[40]\AgdaComment{--\ empty\ program}\<%
+\\
+%
+\>[2]\AgdaOperator{\AgdaInductiveConstructor{␣␣\AgdaUnderscore{}}}%
+\>[15]\AgdaSymbol{:}\AgdaSpace{}%
+\AgdaDatatype{Body⁺}\AgdaSpace{}%
+\AgdaSymbol{→}\AgdaSpace{}%
+\AgdaDatatype{Prog}%
+\>[40]\AgdaComment{--\ non-empty\ program\ B⁺}\<%
+\\
+%
+\\[\AgdaEmptyExtraSkip]%
+\>[0]\AgdaKeyword{infix}\AgdaSpace{}%
+\AgdaNumber{30}\AgdaSpace{}%
+\AgdaOperator{\AgdaInductiveConstructor{␣␣\AgdaUnderscore{}}}\<%
+\\
+\>[0]\AgdaKeyword{infixr}\AgdaSpace{}%
+\AgdaNumber{20}\AgdaSpace{}%
+\AgdaOperator{\AgdaInductiveConstructor{\AgdaUnderscore{}␣␣\AgdaUnderscore{}}}\<%
+\end{code}
