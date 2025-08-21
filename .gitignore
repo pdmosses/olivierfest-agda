@@ -2,6 +2,8 @@
 MAlonzo/**
 .DS_Store
 *.aux
+*.bbl
+*.blg
 *.log
 *.out
 *.ptb
