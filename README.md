@@ -7,12 +7,13 @@ of the language ScmQE defined in the paper:
 > In *Proceedings of the Workshop Dedicated to Olivier Danvy*
 > *on the Occasion of His 64th Birthday (OLIVIERFEST ’25),*
 > *October 12–18, 2025, Singapore, Singapore.*
-> ACM, New York, NY, USA, 10 pages. [DOI]
+> ACM, New York, NY, USA, 10 pages. [DOI](https://doi.org/10.1145/3759427.3760369)
 
 The relationship of the formalization to the definitions in the paper is explained
 in §6 of the paper.
 
-The file [SemQ.pdf] is a highlighted listing of the Agda code.
+The file [SemQ.pdf](https://github.com/pdmosses/olivierfest-agda/blob/main/ScmQE.pdf)
+is a highlighted listing of the Agda code.
 
 ## Prerequisites
 
@@ -20,10 +21,10 @@ The workflow below has been tested using the following software:
 
 * Agda (2.7.0.1)
 * Agda standard library (2.2)
-* pdflatex (TeX Live 2025)
+* pdflatex, bibtex (TeX Live 2025)
 * acmart (2025/05/30 v2.14)
 
-Testing using other recent versions should produce similar results.
+Other recent versions should produce similar results.
 
 ## Testing
 
@@ -64,16 +65,17 @@ olivierfest-agda: agda --latex ScmQE/Soundness-Tests.lagda
 
 ```sh
 olivierfest-agda: cd latex
-latex: pdflatex ScmQE.tex
+latex: pdflatex ScmQE
 ...
-latex: pdflatex ScmQE.tex
+latex: bibtex ScmQE
 ...
-latex: pdflatex ScmQE.tex
+latex: pdflatex ScmQE
 ...
-Output written on ScmQE.pdf (16 pages, 549617 bytes).
+latex: pdflatex ScmQE
+...
+latex: pdflatex ScmQE
+...
+Output written on ScmQE.pdf (16 pages, 553694 bytes).
 ...
 latex: mv ScmQE.pdf ..
 ```
-
-[DOI]: https://doi.org/10.1145/3759427.3760369 "DOI"
-[SemQ.pdf]: https://github.com/pdmosses/olivierfest-agda/blob/main/ScmQE.pdf "PDF"
