@@ -8,7 +8,7 @@ nav:
     - md/Library/index.md
     - md/*
   - HTML: html/ScmQE.All.html
-  - PDF: pdf/ScmQE.All.doc.pdf
+  - PDF: pdf/ScmQE.All.pdf
 
 preserve_directory_names: true
 

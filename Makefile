@@ -221,7 +221,7 @@ $(PDF)/$(NAME).pdf: $(LATEX)/$(NAME).doc.tex $(LATEX-FILES) $(LATEX)/agda.sty $(
 	  $(PDFLATEX) $(NAME).doc.tex; \
 	  $(PDFLATEX) $(NAME).doc.tex; \
 	  rm -f $(NAME).doc.{aux,log,out,ptb,toc}
-	@mkdir -p $(PDF) && mv -f $(LATEX)/$(NAME).doc.pdf $(PDF)/$(NAME).pdf
+	mkdir -p $(PDF) && mv -f $(LATEX)/$(NAME).doc.pdf $(PDF)/$(NAME).pdf
 
 # Serve the generated website for a local preview
 
@@ -232,7 +232,7 @@ serve:
 # Update and build the website, then deploy it on GitHub Pages from the gh-pages branch
 
 .PHONY: deploy
-deploy: all
+deploy:
 	@mkdocs gh-deploy --force
 
 # Remove all files generated from ROOT

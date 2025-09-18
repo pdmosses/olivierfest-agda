@@ -12,7 +12,7 @@ of the language ScmQE defined in the paper:
 The relationship of the formalization to the definitions in the paper is explained
 in §6 of the paper.
 
-The file [SemQ.pdf](pdf/ScmQE.All.doc.pdf) is a highlighted listing of the Agda code.
+The file [SemQ.pdf](pdf/ScmQE.All.pdf) is a highlighted listing of the Agda code.
 
 ## Software
 
@@ -77,7 +77,7 @@ The command `make doc` would produce a LaTeX document based on the standard
 
 ```sh
 olivierfest-agda: make pdf
-olivierfest-agda: cp docs/pdf/ScmQE.All.doc.pdf ScmQE.pdf
+olivierfest-agda: cp docs/pdf/ScmQE.All.pdf ScmQE.pdf
 ```
 
 ## Website
@@ -92,6 +92,7 @@ olivierfest-agda: make html
 
 ```sh
 olivierfest-agda: make md
+olivierfest-agda: make md ROOT=Library.lagda
 ```
 
 ### Serving locally
