@@ -1,9 +1,11 @@
 nav:
-  - index.md
-  - md/Notation/index.md
+  - README.md
+  - Notation: md/Notation/index.md
   - ScmQE:
+    - md/ScmQE/All/index.md
     - md/ScmQE/
   - Library:
+    - md/Library/index.md
     - md/*
   - HTML: html/ScmQE.All.html
   - PDF: pdf/ScmQE.pdf
