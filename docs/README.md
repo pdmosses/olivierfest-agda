@@ -77,7 +77,7 @@ The command `make doc` would produce a LaTeX document based on the standard
 
 ```sh
 olivierfest-agda: make pdf
-olivierfest-agda: cp docs/pdf/ScmQE.All.pdf ScmQE.pdf
+olivierfest-agda: cp docs/pdf/ScmQE.All.doc.pdf ScmQE.pdf
 ```
 
 ## Website
