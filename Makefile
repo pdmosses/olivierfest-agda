@@ -17,7 +17,7 @@
 # LATEX  generated LATEX files   latex
 # TEMP   temporary files         /tmp
 
-# DEFAULTS for OlivierFest-Agda
+# DEFAULTS for olivierfest-agda
 
 DIR   := .
 ROOT  := ScmQE/All.lagda
@@ -88,7 +88,7 @@ MD-FILES := $(addprefix $(MD)/,$(addsuffix /index.md,$(IMPORT-PATHS)))
 LATEX-FILES := $(addprefix $(LATEX)/,$(addsuffix .tex,$(AGDA-PATHS)))
 # e.g., latex/Test/All.tex latex/Test/Sub/Base.tex
 
-LATEX-INPUTS := $(foreach p,$(AGDA-PATHS),$(NEWLINE)\section{$(subst /,.,$(p))}\input{$(p)})
+LATEX-INPUTS := $(foreach p,$(AGDA-PATHS),$(NEWLINE)\pagebreak[3]$(NEWLINE)\section{$(subst /,.,$(p))}\input{$(p)})
 # e.g., \n\section{index}\input{index}\n\section{Test.index}\input{Test/index}...
 
 AGDA-STYLE := conor
@@ -106,8 +106,8 @@ define LATEXDOC
 \\usepackage{hyperref}
 
 \\usepackage[$(AGDA-STYLE)]{agda}
-\\usepackage{$(AGDA-CUSTOM)}
 \\usepackage{$(UNICODE)}
+\\usepackage{$(AGDA-CUSTOM)}
 
 \\title{$(NAME)}
 \\begin{document}
@@ -129,7 +129,7 @@ all: check html md latex doc pdf
 
 .PHONY: check
 check:
-	@$(AGDA) $(ROOT)
+	@$(patsubst --trace-imports=%,--trace-imports=3,$(AGDA)) $(ROOT) | grep $(dir $(ROOT))
 
 # Generate HTML web pages:
 
@@ -275,15 +275,15 @@ make doc:
 make pdf:
   Generate pdf in $(PDF)
 make clean:
-  Remove ROOT-generated files
+  Remove $(ROOT)-generated files
 make clean-md:
-  Remove ROOT-generated Markdown files
+  Remove $(ROOT)-generated Markdown files
 make clean-html:
-  Remove ROOT-generated HTML files
+  Remove $(ROOT)-generated HTML files
 make clean-latex:
-  Remove ROOT-generated LaTeX files
+  Remove $(ROOT)-generated LaTeX files
 make clean-pdf:
-  Remove ROOT-generated PDF file
+  Remove $(ROOT)-generated PDF file
 
 endef
 
@@ -293,11 +293,11 @@ DIR:          $(DIR)
 ROOT:         $(ROOT)
 NAME:         $(NAME)
 
-IMPORT-NAMES: $(IMPORT-NAMES)
+IMPORT-NAMES (1-5): $(wordlist 1, 5, $(IMPORT-NAMES))
 
-IMPORT-PATHS: $(IMPORT-PATHS)
+IMPORT-PATHS (1-5): $(wordlist 1, 5, $(IMPORT-PATHS))
 
-MODULE-NAMES: $(MODULE-NAMES)
+MODULE-NAMES (1-5): $(wordlist 1, 5, $(MODULE-NAMES))
 
 AGDA-NAMES:   $(AGDA-NAMES)
 
@@ -305,9 +305,9 @@ AGDA-PATHS:   $(AGDA-PATHS)
 
 AGDA-FILES:   $(AGDA-FILES)
 
-HTML-FILES:   $(HTML-FILES)
+HTML-FILES (1-5):   $(wordlist 1, 5, $(HTML-FILES))
 
-MD-FILES:     $(MD-FILES)
+MD-FILES (1-5):     $(wordlist 1, 5, $(MD-FILES))
 
 LATEXDOC:
 
