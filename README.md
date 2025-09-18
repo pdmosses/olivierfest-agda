@@ -12,7 +12,7 @@ of the language ScmQE defined in the paper:
 The relationship of the formalization to the definitions in the paper is explained
 in §6 of the paper.
 
-The file [SemQ.pdf](pdf/ScmQE.pdf) is a highlighted listing of the Agda code.
+The file [SemQ.pdf](pdf/ScmQE.All.doc.pdf) is a highlighted listing of the Agda code.
 
 ## Software
 
