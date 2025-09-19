@@ -14,9 +14,9 @@ in §6 of the paper.
 
 ## Highlighted listings
 
-- [Web](md/ScmQE/All/index.md) with hyperlinks, navigation panel, and dark mode
+- [Web](md/ScmQE/All/) with hyperlinks, navigation panel, and dark mode
 
-    - [Notation](md/Notation/index.md) lightweight notation for domains
+    - [Notation](md/Notation/) lightweight notation for domains
 
 - [HTML](html/ScmQE.All.html) with hyperlinks
 
