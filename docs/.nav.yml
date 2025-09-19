@@ -10,6 +10,8 @@ nav:
   - HTML: html/ScmQE.All.html
   - PDF: pdf/ScmQE.All.pdf
 
+ignore: md/index/index.md
+
 preserve_directory_names: true
 
 sort:
