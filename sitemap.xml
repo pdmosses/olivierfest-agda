@@ -17,6 +17,10 @@
          <lastmod>2025-09-19</lastmod>
     </url>
     <url>
+         <loc>https://pdmosses.github.io/olivierfest-agda/md/Agda/Builtin/Equality/Rewrite/</loc>
+         <lastmod>2025-09-19</lastmod>
+    </url>
+    <url>
          <loc>https://pdmosses.github.io/olivierfest-agda/md/Agda/Builtin/Int/</loc>
          <lastmod>2025-09-19</lastmod>
     </url>
@@ -334,6 +338,14 @@
     </url>
     <url>
          <loc>https://pdmosses.github.io/olivierfest-agda/md/ScmQE/Semantic-Functions/</loc>
+         <lastmod>2025-09-19</lastmod>
+    </url>
+    <url>
+         <loc>https://pdmosses.github.io/olivierfest-agda/md/ScmQE/Soundness-Tests/</loc>
+         <lastmod>2025-09-19</lastmod>
+    </url>
+    <url>
+         <loc>https://pdmosses.github.io/olivierfest-agda/md/index/</loc>
          <lastmod>2025-09-19</lastmod>
     </url>
 </urlset>
