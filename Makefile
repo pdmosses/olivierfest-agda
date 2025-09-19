@@ -152,8 +152,8 @@ website:
 	@$(MAKE) pdf ROOT=ScmQE/All.lagda
 	@cp docs/pdf/ScmQE.All.pdf ScmQE.pdf
 	@echo Generate website...
-	$(MAKE) html
-	$(MAKE) md
+	@$(MAKE) html
+	@$(MAKE) md
 	@echo ... all finished
 	@echo Run make serve to preview the generated webite
 
