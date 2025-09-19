@@ -21,6 +21,8 @@ The `Makefile` in this repository automates:
 - previewing the website locally; and
 - deploying the website to GitHub Pages.
 
+The deployed website is at https://pdmosses.github.io/olivierfest-agda/.
+
 ## Repository contents
 
 The repository contains the following files and directories:
