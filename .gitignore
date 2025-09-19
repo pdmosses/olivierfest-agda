@@ -3,6 +3,7 @@ MAlonzo/**
 docs/html/
 docs/md/
 docs/pdf/
+ScmQE.pdf
 latex/
 *.aux
 *.log
