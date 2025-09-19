@@ -197,7 +197,8 @@ $(MD-FILES) &:: $(AGDA-FILES)
 	@$(AGDA) --html --html-highlight=code --html-dir=$(MD) $(ROOT)
 	@for FILE in $(MD)/*; do \
 	  BASENAME=$${FILE%.*}; \
-	  MDFILE=$${BASENAME//./\/}/index.md; \
+	  MDPATH=$${BASENAME//./\/}; \
+	  MDFILE=$$MDPATH/index.md; \
 	  RELATIVE=`echo $$BASENAME | sd '^$(MD)/' '.' | sd '\.[^.]*' '../'`; \
 	  export MDFILE; \
 	  case $$FILE in \
@@ -213,9 +214,9 @@ $(MD-FILES) &:: $(AGDA-FILES)
 	      done; \
 	      sd 'href="([A-Za-z])' "href=\"$$RELATIVE\$$1" $$FILE; \
 	      mkdir -p `dirname $$MDFILE`; \
-	      printf "%s\ntitle: %s\n%s\n\n# %s\n\n" \
+	      printf "%s\ntitle: %s\nhide: toc\n%s\n\n# %s\n\n" \
 	             "---" \
-		     `basename -s ".md" $$MDFILE` \
+		     `basename $$MDPATH` \
 		     "---" \
 		     $${BASENAME##*/} > $$MDFILE; \
 	      cat $$FILE >> $$MDFILE;; \
