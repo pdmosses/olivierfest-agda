@@ -20,7 +20,7 @@
 # DEFAULTS for olivierfest-agda
 
 DIR   := .
-ROOT  := ScmQE/All.lagda
+ROOT  := index.lagda
 HTML  := docs/html
 MD    := docs/md
 PDF   := docs/pdf
@@ -32,8 +32,10 @@ TEMP  := /tmp
 
 SHELL=/bin/sh
 
-# Shell command for calling Agda:
-AGDA := agda --include-path=$(DIR) --trace-imports=0 --interaction-exit-on-error
+# Shell commands for calling Agda:
+AGDA := agda --include-path=$(DIR) --trace-imports=0
+
+AGDA-CHECK := agda --include-path=$(DIR) --trace-imports=3
 
 # Shell command for generating PDF from LaTeX:
 PDFLATEX := pdflatex -shell-escape -interaction=nonstopmode
@@ -49,10 +51,11 @@ define NEWLINE
 endef
 
 # Target files:
-HTML-FILES := $(subst $(TEMP)/,$(HTML)/,$(shell \
+HTML-FILES := $(sort $(HTML)/$(ROOT:lagda=html) \
+		$(subst $(TEMP)/,$(HTML)/,$(shell \
 		rm -f $(TEMP)/*.html; \
 		$(AGDA) --html --html-dir=$(TEMP) $(ROOT); \
-		ls $(TEMP)/*.html))
+		ls $(TEMP)/*.html)))
 # e.g., docs/html/Agda.Primitive.html docs/html/Test.All.html docs/html/Test.Sub.Base.html
 
 # Names of modules imported (perhaps indirectly) by ROOT:
@@ -122,14 +125,43 @@ endef
 ##############################################################################
 # RULES
 
-.PHONY: all
-all: check html md latex doc pdf
+.PHONY: help
+export HELP
+help:
+	@echo "$$HELP"
+
+.PHONY: debug
+export DEBUG
+debug:
+	@echo "$$DEBUG"
+
+# Clean and regenerate the OlivierFest-Agda website:
+
+.PHONY: website
+website:
+	@echo Clean...
+	@$(MAKE) clean
+	@rm -f ScmQE.pdf
+	@echo Check Agda code...
+	@$(MAKE) check
+	@echo Generate LaTeX code...
+	@$(MAKE) latex
+	@cp ScmQE.tex latex/ScmQE.All.doc.tex
+	@cp ScmQE.bib latex/
+	@echo Generate PDF...
+	@$(MAKE) pdf ROOT=ScmQE/All.lagda
+	@cp docs/pdf/ScmQE.All.pdf ScmQE.pdf
+	@echo Generate website...
+	$(MAKE) html
+	$(MAKE) md
+	@echo ... all finished
+	@echo Run make serve to preview the generated webite
 
 # Check Agda source files:
 
 .PHONY: check
 check:
-	@$(patsubst --trace-imports=%,--trace-imports=3,$(AGDA)) $(ROOT) | grep $(dir $(ROOT))
+	@$(AGDA-CHECK) $(ROOT) | grep $(shell pwd)
 
 # Generate HTML web pages:
 
@@ -256,34 +288,16 @@ clean-pdf:
 
 define HELP
 
-make all
-  Generate web pages and pdfs for $(ROOT)
-make check:
-  Check that loading the Agda source files for $(ROOT) does not report errors
-make preview
-  Update the web pages and pdfs for $(ROOT), the preview the website locally
+make check
+  Test the Agda code
+make website
+  Generate a website listing the Agda code
+make serve
+  Browse the website locally
 make deploy
-  Update the web pages and pdfs for $(ROOT), then deploy the website on GitHub Pages 
-make html:
-  Generate web page sources in ${HTML}
-make md:
-  Generate web page sources in $(MD)
-make latex:
-  Generate latex sources in $(LATEX)
-make doc:
-  Generate latex document source in $(LATEX)
-make pdf:
-  Generate pdf in $(PDF)
-make clean:
-  Remove $(ROOT)-generated files
-make clean-md:
-  Remove $(ROOT)-generated Markdown files
-make clean-html:
-  Remove $(ROOT)-generated HTML files
-make clean-latex:
-  Remove $(ROOT)-generated LaTeX files
-make clean-pdf:
-  Remove $(ROOT)-generated PDF file
+  Deploy the website on GitHub Pagess 
+make help
+  Display this information
 
 endef
 
@@ -321,13 +335,3 @@ $(LATEX-INPUTS)
 AGDA-CUSTOM:  $(AGDA-CUSTOM)
 
 endef
-
-.PHONY: help
-export HELP
-help:
-	@echo "$$HELP"
-
-.PHONY: debug
-export DEBUG
-debug:
-	@echo "$$DEBUG"
