@@ -67,3 +67,6 @@ markdown_extensions:
 plugins:
 - search
 - awesome-nav
+
+validation:
+  omitted_files: ignore
