@@ -147,11 +147,8 @@ website:
 	@$(MAKE) md
 	@echo Generate LaTeX inputs in $(LATEX) ...
 	@$(MAKE) latex
-	@cp ScmQE.tex latex/ScmQE.All.doc.tex
-	@cp ScmQE.bib latex/
 	@echo Generate PDF in $(PDF) ...
 	@$(MAKE) pdf ROOT=ScmQE/All.lagda
-	@cp docs/pdf/ScmQE.All.pdf ScmQE.pdf
 	@echo ... finished
 	@echo
 	@echo To preview the generated webite:
@@ -171,9 +168,6 @@ html: $(AGDA-FILES)
 	@$(AGDA-Q) --html --html-dir=$(HTML) $(ROOT)
 
 # Generate Markdown sources for web pages:
-
-.PHONY: md
-md: $(MD-FILES)
 
 # `agda --html --html-highlight=code ROOT.lagda` produces highlighted HTML files
 # from plain `agda` and literate `lagda` source files. However, the extension is
@@ -234,12 +228,12 @@ $(LATEX-FILES): $(LATEX)/%.tex: $(DIR)/%.lagda
 
 # Generate a LaTeX document to format the generated LaTeX files:
 
-.PHONY: doc
-doc: $(LATEX)/$(AGDA-DOC).doc.tex
+# .PHONY: doc
+# doc: $(LATEX)/$(AGDA-DOC).tex
 
-export LATEXDOC
-$(LATEX)/$(AGDA-DOC).tex:
-	@echo "$$LATEXDOC" > $@
+# export LATEXDOC
+# $(LATEX)/$(AGDA-DOC).tex:
+# 	@echo "$$LATEXDOC" > $@
 
 # Generate a PDF using $(PDFLATEX)
 
