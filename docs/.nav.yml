@@ -2,15 +2,16 @@ nav:
   - index.md
   - Notation: md/Notation/index.md
   - ScmQE:
+    - md/ScmQE/index/index.md
     - md/ScmQE/All/index.md
     - md/ScmQE/
   - Library:
-    - md/Library/index.md
+    - Library/index.md
     - md/*
   - HTML: html/ScmQE.All.html
   - PDF: pdf/ScmQE.All.pdf
 
-ignore: md/index/index.md
+# ignore: md/index/index.md
 
 preserve_directory_names: true
 
