@@ -240,7 +240,7 @@ $(LATEX-FILES): $(LATEX)/%.tex: $(DIR)/%.lagda
 .PHONY: pdf
 pdf: $(PDF)/$(NAME).pdf
 
-$(PDF)/$(NAME).pdf: $(LATEX)/$(AGDA-DOC).tex $(LATEX-FILES) $(LATEX)/agda.sty $(LATEX)/$(AGDA-CUSTOM).sty $(LATEX)/$(AGDA-UNICODE).sty
+$(PDF)/$(NAME).pdf: ScmQE.tex ScmQE.bib $(LATEX-FILES) $(LATEX)/agda.sty $(LATEX)/$(AGDA-CUSTOM).sty $(LATEX)/$(AGDA-UNICODE).sty
 	@cp ScmQE.tex $(LATEX)/$(AGDA-DOC).tex
 	@cp ScmQE.bib $(LATEX)
 	@cd $(LATEX); \
