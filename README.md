@@ -28,17 +28,18 @@ The deployed website is at https://pdmosses.github.io/olivierfest-agda/.
 The repository contains the following files and directories:
 
 - `ScmQE`: directory for Agda source code of the ScmQE language
-- `index.lagda`, `Library.lagda`, `Notation.lagda`: auxiliary Agda source code
 - `docs`: directory for generating a website
     - `docs/javascripts`: directory for added Javascript files
     - `docs/stylesheets`: directory for added CSS files
     - `docs/.nav.yml`: configuration file for navigation panels
     - `docs/index.md`: Markdown source for the website home page
 - `agda-custom.sty`: package for overriding commands defined in `agda.sty`
-- `unicode.sty`: package mapping Unicode characters to LaTeX
+- `agda-unicode.sty`: package mapping Unicode characters to LaTeX
+- `LICENSE.txt`: release into the public domain
 - `Makefile`: automation of website and PDF generation
 - `mkdocs.yml`: configuration file for generated websites
-- `LICENSE.txt`: release into the public domain
+- `Notation.lagda`: auxiliary Agda source code for highlighted listings
+- `ScmQE.bib`, `ScmQE.tex`: BibTeX and LaTeX source code
 
 The repository does not contain any generated files.
 
