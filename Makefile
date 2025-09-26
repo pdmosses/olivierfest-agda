@@ -49,15 +49,16 @@ AGDA-Q := agda --include-path=$(DIR) --trace-imports=0
 AGDA-V := agda --include-path=$(DIR) --trace-imports=3
 
 # Shell command for generating PDF from LaTeX:
-PDFLATEX := pdflatex -shell-escape -interaction=errorstopmode
+PDFLATEX := pdflatex -shell-escape -interaction=nonstopmode
 BIBTEX := bibtex
 
 # Name of ROOT module:
 NAME := $(subst /,.,$(subst $(DIR)/,,$(basename $(ROOT))))
 
 # Target files:
-HTML-FILES := $(sort $(HTML)/$(subst /,.,$(patsubst $(DIR)/%,%,$(ROOT:lagda=html))) \
-		$(subst $(TEMP)/,$(HTML)/,$(shell \
+HTML-FILES := $(sort \
+	$(HTML)/$(NAME).html \
+	$(patsubst $(TEMP)/%,$(HTML)/%,$(shell \
 		rm -f $(TEMP)/*.html; \
 		$(AGDA-Q) --html --html-dir=$(TEMP) $(ROOT); \
 		ls $(TEMP)/*.html)))
@@ -137,7 +138,7 @@ website:
 	@echo Clean and generate the website for $(ROOT)
 	@echo
 	@echo Clean ...
-	@$(MAKE) clean
+	@$(MAKE) clean-all
 	@rm -f ScmQE.pdf
 	@echo Check Agda code in $(ROOT) ...
 	@$(MAKE) check
@@ -189,16 +190,12 @@ html: $(AGDA-FILES)
 .PHONY: md
 md: $(MD-FILES)
 
-# It is unclear to me how to use order-only prerequisites to ensure that $(MD)
-# has been initialized. The following use of md-init is a workaround.
+# Create HTML files in $(MD):
+$(MD):
+	@$(AGDA-Q) --html --html-highlight=code --html-dir=$(MD) $(ROOT)
 
-.PHONY: md-init
-md-init:
-	@if [ ! -d $(MD) ] ; then \
-	    $(AGDA-Q) --html --html-highlight=code --html-dir=$(MD) $(ROOT); \
-	fi
-
-$(MD-FILES): $(MD)/%/index.md: $(HTML-FILES) md-init
+# Use an order-only prerequisite:
+$(MD-FILES): $(MD)/%/index.md: $(AGDA-FILES) | $(MD)
 	@mkdir -p $(@D)
 # Wrap *.html files in <pre> tags, and rename *.html and *.tex files to *.md:
 	@if [ -f $(MD)/$(subst /,.,$*).html ]; then \
@@ -265,8 +262,8 @@ deploy:
 
 # Remove all files generated from ROOT
 
-.PHONY: clean clean-html clean-md clean-latex clean-pdf
-clean: clean-html clean-md clean-latex clean-pdf
+.PHONY: clean-all clean-html clean-md clean-latex clean-pdf
+clean-all: clean-html clean-md clean-latex clean-pdf
 
 clean-html:
 	@rm -rf $(HTML)
