@@ -35,10 +35,12 @@ The repository contains the following files and directories:
     - `docs/index.md`: Markdown source for the website home page
 - `agda-custom.sty`: package for overriding commands defined in `agda.sty`
 - `agda-unicode.sty`: package mapping Unicode characters to LaTeX
+- `CHANGELOG.md`: summary of significant changes from previous releases.
 - `LICENSE.txt`: release into the public domain
 - `Makefile`: automation of website and PDF generation
 - `mkdocs.yml`: configuration file for generated websites
 - `Notation.lagda`: auxiliary Agda source code for highlighted listings
+- `README.md`: this file
 - `ScmQE.bib`, `ScmQE.tex`: BibTeX and LaTeX source code
 
 The repository does not contain any generated files.
