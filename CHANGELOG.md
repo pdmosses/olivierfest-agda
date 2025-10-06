@@ -8,6 +8,10 @@ and generating a PDF with a listing of the code.
 It also supports generating a website with hyperlinked listings of the code,
 including the imported modules from the standard Agda library.
 
+The generated PDF `ScmQE.pdf` is included in the website on GitHub Pages at 
+`https://pdmosses.github.io/olivierfest-agda/pdf/ScmQE.All.pdf`.
+To avoid duplication, `ScmQE.pdf` has been removed from the GitHub repository.
+
 See the `README` file for further details.
 
 - Add `Makefile`
