@@ -1,13 +1,45 @@
 \documentclass[sigplan,screen,nonacm]{acmart}
 \settopmatter{printfolios=true}
 
-\usepackage[conor]{agda}
+% https://tex.stackexchange.com/questions/564490/ suggestion:
+\let\Bbbk\relax
+
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
 \DisableLigatures[-]{encoding = T1, family = tt* }
-\input{agda-custom}
+\usepackage{hyperref}
+
+\usepackage[conor]{agda}
+\usepackage{../agda-unicode}
+\usepackage{../agda-custom}
+
+\newunicodechar{⋆}{\ensuremath{{}^*}}
+\newunicodechar{𝐀}{\textbf{A}}
+\newunicodechar{𝐂}{\textbf{C}}
+\newunicodechar{𝐃}{\textbf{D}}
+\newunicodechar{𝐄}{\textbf{E}}
+\newunicodechar{𝐅}{\textbf{F}}
+\newunicodechar{𝐇}{\textbf{H}}
+\newunicodechar{𝐊}{\textbf{K}}
+\newunicodechar{𝐋}{\textbf{L}}
+\newunicodechar{𝐌}{\textbf{M}}
+\newunicodechar{𝐍}{\textbf{N}}
+\newunicodechar{𝐏}{\textbf{P}}
+\newunicodechar{𝐐}{\textbf{Q}}
+\newunicodechar{𝐑}{\textbf{R}}
+\newunicodechar{𝐒}{\textbf{S}}
+\newunicodechar{𝐓}{\textbf{T}}
+\newunicodechar{𝐔}{\textbf{U}}
+\newunicodechar{𝐖}{\textbf{W}}
+\newunicodechar{𝐗}{\textbf{X}}
+\newunicodechar{𝐩}{\textbf{p}}
+\newunicodechar{𝐬}{\textbf{s}}
+\newunicodechar{𝐯}{\textbf{v}}
+\newunicodechar{𝐱}{\textbf{x}}
 
 \begin{document}
 
-\title{A Compositional Semantics for \emph{eval} in Scheme}
+\title{A Compositional Semantics for \texttt{eval} in Scheme}
 
 \subtitle{Listing of a Lightweight Agda Formalization}
 

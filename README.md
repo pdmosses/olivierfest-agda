@@ -1,7 +1,9 @@
-# olivierfest-agda
+# OlivierFest-Agda
 
-The Agda code provides a lightweight formalization of the denotational semantics
-of the language ScmQE defined in the paper:
+This is the README page for the [OlivierFest-Agda repository].
+
+The Agda code in this repository provides a lightweight formalization of the
+denotational semantics of the language ScmQE defined in the paper:
 
 > Peter D. Mosses. 2025. A Compositional Semantics for `eval` in Scheme.
 > In *Proceedings of the Workshop Dedicated to Olivier Danvy*
@@ -12,70 +14,128 @@ of the language ScmQE defined in the paper:
 The relationship of the formalization to the definitions in the paper is explained
 in §6 of the paper.
 
-The file [SemQ.pdf](https://github.com/pdmosses/olivierfest-agda/blob/main/ScmQE.pdf)
-is a highlighted listing of the Agda code.
+The `Makefile` in this repository automates:
 
-## Prerequisites
+- testing the Agda code;
+- generating a website for browsing the code;
+- previewing the website locally; and
+- deploying the website to GitHub Pages.
 
-The workflow below has been tested using the following software:
+The deployed website is at https://pdmosses.github.io/olivierfest-agda/.
 
-* Agda (2.7.0.1)
-* Agda standard library (2.2)
-* pdflatex, bibtex (TeX Live 2025)
-* acmart (2025/05/30 v2.14)
+## Repository contents
 
-Other recent versions should produce similar results.
+The repository contains the following files and directories:
 
-## Testing
+- `ScmQE`: directory for Agda source code of the ScmQE language
+- `docs`: directory for generating a website
+    - `docs/javascripts`: directory for added Javascript files
+    - `docs/stylesheets`: directory for added CSS files
+    - `docs/.nav.yml`: configuration file for navigation panels
+    - `docs/index.md`: Markdown source for the website home page
+- `agda-custom.sty`: package for overriding commands defined in `agda.sty`
+- `agda-unicode.sty`: package mapping Unicode characters to LaTeX
+- `CHANGELOG.md`: summary of significant changes from previous releases.
+- `LICENSE.txt`: release into the public domain
+- `Makefile`: automation of website and PDF generation
+- `mkdocs.yml`: configuration file for generated websites
+- `Notation.lagda`: auxiliary Agda source code for highlighted listings
+- `README.md`: this file
+- `ScmQE.bib`, `ScmQE.tex`: BibTeX and LaTeX source code
 
-### Type-checking
+The repository does not contain any generated files.
+
+## Software dependencies
+
+- [Agda] (2.7.0)
+- [GNU Make] (3.8.1)
+- [sd] (1.0.0)
+
+### For website generation
+
+- [Python 3] (3.11.3)
+- [Pip] (25.2)
+- [MkDocs] (1.6.1)
+- [Material for MkDocs] (9.6.19)
+- [Awesome-nav] (3.2.0)
+- [GitHub Pages]
+
+### For PDF generation
+
+- [TeXLive] (2025)
+
+## Platform dependencies
+
+Agda-Material has been developed and tested on MacBook laptops
+with Apple M1 and M3 chips running macOS Sequoia (15.5) with CLI Tools.
+
+Please report any [issues] with using Agda-Material on other platforms,
+including all relevant details.
+
+[Pull requests] for addressing such issues are welcome. They should include the
+results of tests that demonstrate the benefit of the PR.
+
+## Getting started
+
+All `make` commands are to be run in the `olivierfest-agda` directory.
+
+### Test the Agda code
 
 ```sh
-olivierfest-agda: agda ScmQE/All.lagda 
-Checking ScmQE.All (.../olivierfest-agda/ScmQE/All.lagda).
- Checking Notation (.../olivierfest-agda/Notation.lagda).
- Checking ScmQE.Abstract-Syntax (.../olivierfest-agda/ScmQE/Abstract-Syntax.lagda).
- Checking ScmQE.Domain-Equations (.../olivierfest-agda/ScmQE/Domain-Equations.lagda).
- Checking ScmQE.Semantic-Functions (.../olivierfest-agda/ScmQE/Semantic-Functions.lagda).
-  Checking ScmQE.Auxiliary-Functions (.../olivierfest-agda/ScmQE/Auxiliary-Functions.lagda).
+make check
 ```
 
-### Soundness Tests
+### Generate a website listing the Agda code
 
 ```sh
-olivierfest-agda: agda ScmQE/Soundness-Tests.lagda 
-Checking ScmQE.Soundness-Tests (.../olivierfest-agda/ScmQE/Soundness-Tests.lagda).
+make website
 ```
 
-## Listing
-
-### Generating LaTeX
+### Browse the website locally
 
 ```sh
-olivierfest-agda: agda --latex Notation.lagda
-olivierfest-agda: agda --latex ScmQE/All.lagda 
-olivierfest-agda: agda --latex ScmQE/Abstract-Syntax.lagda 
-olivierfest-agda: agda --latex ScmQE/Auxiliary-Functions.lagda 
-olivierfest-agda: agda --latex ScmQE/Domain-Equations.lagda   
-olivierfest-agda: agda --latex ScmQE/Semantic-Functions.lagda 
-olivierfest-agda: agda --latex ScmQE/Soundness-Tests.lagda
+make serve
 ```
 
-### Generating PDF
+### Deploy the website on GitHub Pages
+
+Update the following fields in `mkdocs.yml`:
+
+- `site_name`
+- `site_url`
+- `repo_name`
+- `repo_url`
 
 ```sh
-olivierfest-agda: cd latex
-latex: pdflatex ScmQE
-...
-latex: bibtex ScmQE
-...
-latex: pdflatex ScmQE
-...
-latex: pdflatex ScmQE
-...
-latex: pdflatex ScmQE
-...
-Output written on ScmQE.pdf (16 pages, 553694 bytes).
-...
-latex: mv ScmQE.pdf ..
+make deploy
 ```
+
+## Contributing
+
+Please report any [issues] that arise.
+
+Comments and suggestions for improvement are welcome, and can be added as [Discussions].
+
+## Contact
+
+Peter Mosses
+
+[p.d.mosses@tudelft.nl](mailto:p.d.mosses@tudelft.nl)
+
+[pdmosses.github.io](https://pdmosses.github.io)
+
+
+[OlivierFest-Agda repository]: https://github.com/pdmosses/olivierfest-agda/
+[Issues]: https://github.com/pdmosses/olivierfest-agda/issues
+[Pull requests]: https://github.com/pdmosses/olivierfest-agda/pulls
+[Home page]: index.md
+[Agda]: https://agda.readthedocs.io/en/stable/getting-started/index.html
+[GNU Make]: https://www.gnu.org/software/make/manual/make.html
+[sd]: https://github.com/chmln/sd/
+[Python 3]: https://www.python.org/downloads/
+[Pip]: https://pypi.org/project/pip/
+[MkDocs]: https://www.mkdocs.org/getting-started/
+[Material for MkDocs]: https://squidfunk.github.io/mkdocs-material/getting-started/
+[Awesome-nav]: https://lukasgeiter.github.io/mkdocs-awesome-nav/
+[GitHub Pages]: https://pages.github.com
+[TeXLive]: https://www.tug.org/texlive/
