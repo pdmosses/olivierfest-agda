@@ -203,6 +203,8 @@ $(MD-FILES): $(MD)/%/index.md: $(AGDA-FILES) | $(MD)
 	else \
 	    mv -f $(MD)/$(subst /,.,$*).tex $@; \
 	fi
+# Remove LaTeX page breaks:
+	@sd '\n\\clearpage\n' '' $@
 # Prepend front matter:
 	@sd -- '\A' '---\ntitle: $(*F)\nhide: toc\n---\n\n# $(subst /,.,$*)\n\n' $@
 # Use directory URLs:
